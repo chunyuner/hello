@@ -43,6 +43,15 @@ public class MainActivity extends AppCompatActivity {
         mCamera = this.getCameraInstance();
 
 
+        //自动对焦模式
+        Camera.Parameters params = mCamera.getParameters();
+        if (params.getSupportedFocusModes().contains(
+                Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO)) {
+            params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
+        }
+        mCamera.setParameters(params);
+
+
         //创建预览视图并加入到activity的View中
         mPreview = new CameraPreview(this, mCamera);
         FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
