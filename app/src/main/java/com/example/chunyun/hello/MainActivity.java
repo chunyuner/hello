@@ -58,8 +58,4 @@ public class MainActivity extends AppCompatActivity {
         preview.addView(mPreview);
     }
 
-    //hello春运
-    //吹的邮箱有毒
-    // mdzz
-    //我爱山p 山p爱我
 }
