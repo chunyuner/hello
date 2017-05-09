@@ -3,8 +3,10 @@ package com.example.chunyun.hello;
 import android.content.Context;
 import android.hardware.Camera;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -17,11 +19,13 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
     private SurfaceHolder mHolder;
     private Camera mCamera;
+    Context context;
 
 
     public CameraPreview(Context context, Camera camera) {
         super(context);
         mCamera = camera;
+        this.context = context;
 
         //设置 SurfaceHolder.Callback 这样才会在视图被创建和销毁的时候得到通知
         mHolder = getHolder();
@@ -77,5 +81,31 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
 
+    }
+
+    private void handleOneFingerTouch(MotionEvent event) {
+        float x, y;
+        x = event.getX();
+        y = event.getY();
+        float windsHeight=getHeight();
+        Toast toast;
+        if(y<windsHeight/2) {
+            //用户触摸屏幕上部
+            toast=Toast.makeText(this.context, "上", Toast.LENGTH_SHORT);
+        }else {
+            //用户触摸屏幕下部
+            toast=Toast.makeText(this.context, "下", Toast.LENGTH_SHORT);
+        }
+        toast.show();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        //return super.onTouchEvent(event);
+        //一根手指
+        if (event.getPointerCount() == 1) {
+            handleOneFingerTouch(event);
+        }
+        return true;
     }
 }

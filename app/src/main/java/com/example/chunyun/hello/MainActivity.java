@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
+
 public class MainActivity extends AppCompatActivity {
     private Camera mCamera;
     private CameraPreview mPreview;
@@ -47,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
         preview.addView(mPreview);
     }
-
 
     @Override
     protected void onPause() {
